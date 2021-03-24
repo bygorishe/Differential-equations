@@ -1,0 +1,22 @@
+!define BLANK ""
+C:\Users\angry\OneDrive\Desktop\lab4.1\laba41.obj : C:\Users\angry\OneDrive\&
+Desktop\lab4.1\laba41.for .AUTODEPEND
+ @C:
+ cd C:\Users\angry\OneDrive\Desktop\lab4.1
+ wfc386 laba41.for -d2 -q -dep
+
+C:\Users\angry\OneDrive\Desktop\lab4.1\laba41.exe : C:\Users\angry\OneDrive\&
+Desktop\lab4.1\laba41.obj .AUTODEPEND
+ @C:
+ cd C:\Users\angry\OneDrive\Desktop\lab4.1
+ @%write laba41.lk1 FIL laba41.obj
+ @%append laba41.lk1 
+!ifneq BLANK ""
+ *wlib -q -n -b laba41.imp 
+ @%append laba41.lk1 LIBR laba41.imp
+!endif
+!ifneq BLANK ""
+ @%append laba41.lk1 
+!endif
+ *wlink name laba41 d all sys nt op m op maxe=25 op q op symf @laba41.lk1
+
