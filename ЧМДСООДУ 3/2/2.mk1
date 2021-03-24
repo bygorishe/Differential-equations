@@ -1,0 +1,20 @@
+!define BLANK ""
+D:\WATCOM\2\2.obj : D:\WATCOM\2\2.for .AUTODEPEND
+ @D:
+ cd D:\WATCOM\2
+ wfc386 2.for -d2 -q -dep
+
+D:\WATCOM\2\2.exe : D:\WATCOM\2\2.obj .AUTODEPEND
+ @D:
+ cd D:\WATCOM\2
+ @%write 2.lk1 FIL 2.obj
+ @%append 2.lk1 
+!ifneq BLANK ""
+ *wlib -q -n -b 2.imp 
+ @%append 2.lk1 LIBR 2.imp
+!endif
+!ifneq BLANK ""
+ @%append 2.lk1 
+!endif
+ *wlink name 2 d all sys nt op m op maxe=25 op q op symf @2.lk1
+
